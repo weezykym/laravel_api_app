@@ -16,6 +16,8 @@ class AuthController extends Controller
                 'password' => 'required|confirmed'
             ]
             );
+            
+
 
             $user = User::create($fields);
             $token = $user->createToken($request->name);
@@ -37,8 +39,7 @@ class AuthController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return [
                 'errors' => [ 
-                    'email' => ['The provided credentials are not correct']
-                    
+                    'email' => ['The provided credentials are not correct']                    
                     ]
                 ];                    
         }
